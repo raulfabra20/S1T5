@@ -1,13 +1,14 @@
 package n1.ex2;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class SortTree {
     private String path;
 
-    public static void printDirectory(String path){
+    public static void printDirectory(String path) throws FileNotFoundException {
         File file = new File(path);
         SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -23,12 +24,12 @@ public class SortTree {
                         printDirectory(f.getAbsolutePath());
                     }
                 } else {
-                    System.out.println("The path is null.");
+                    throw new FileNotFoundException("Error listing the contents of the file");
                 }
             } else if (file.isFile()){
                 System.out.println("F: "+ file.getName()+" / Last modified date: "+date.format(file.lastModified()));
             } else {
-                System.out.println("The path is not correct.");
+                throw new FileNotFoundException("Error listing the contents of the directory");
             }
             }
         }

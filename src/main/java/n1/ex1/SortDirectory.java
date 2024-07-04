@@ -1,11 +1,12 @@
 package n1.ex1;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class SortDirectory {
 
-    public static void printDirectory(String path){
+    public static void printDirectory(String path) throws FileNotFoundException {
         File file = new File(path);
 
         if(!file.exists()){
@@ -19,10 +20,10 @@ public class SortDirectory {
                         System.out.println(f.getName());
                     }
                 } else {
-                    System.out.println("The path is null.");
+                    throw new FileNotFoundException("Error listing the contents of the file");
                 }
             } else {
-                System.out.println("Error listing the contents of the directory");
+                throw new FileNotFoundException("Error listing the contents of the directory");
             }
 
         }
